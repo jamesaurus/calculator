@@ -28,6 +28,11 @@ function operate(operator, num1, num2) {
     }
 }
 
+function changeDisplay(value) {
+    const display = document.getElementById("display-text");
+    display.innerHTML = value;
+}
+
 /*
 console.log(operate("add", 1, 2));
 console.log(operate("subtract", 2, 1));
