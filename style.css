@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display:flex;
+    justify-content: center;
+}
+
+.container {
+    width: 500px;
+    height: 500px;
+    margin-top: 50px;
+    padding: 20px;
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.display {
+    border: 1px solid red;
+}
+
+.buttons {
+    flex-grow: 1;
+    display: flex;
+}
+
+.buttons button {
+    flex-grow: 1;
+}
