@@ -31,7 +31,7 @@ function operate(operator, num1, num2) {
 }
 
 function changeDisplay(value) {
-    const display = document.getElementById("display-text");
+    const display = document.querySelector(".display");
     display.innerHTML = value;
 }
 
@@ -91,6 +91,14 @@ buttons.forEach((button) => {
             num1 = displayValue;
             num2 = "";
             operator = "";
+        } else if (button.className === "decimal") {
+            if (operator === "") { // First number
+                num1 += button.textContent;
+                displayValue = num1;
+            } else { // Second number
+                num2 += button.textContent;
+                displayValue = num2;
+            }
         } else if (button.className === "all-clear") { 
             allClear();
         } else {
