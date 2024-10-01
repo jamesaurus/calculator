@@ -22,6 +22,7 @@ body {
 
 .display {
     border: 2px solid;
+    border-radius: 4px;
     background-color: #adb5bd;
 }
 
@@ -45,14 +46,10 @@ body {
     border: 2px solid;
     border-radius: 4px;
     background-color: #ced4da;
+    font-size: 24px;
 }
 
-.buttons .all-clear {
-    flex-grow: 2;
-    flex-basis: 130px;
-}
-
-.buttons .equals {
+.buttons .all-clear, .buttons .equals {
     flex-grow: 2;
     flex-basis: 130px;
 }
