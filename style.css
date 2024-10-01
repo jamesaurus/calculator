@@ -8,25 +8,59 @@ body {
 }
 
 .container {
-    width: 500px;
+    width: 325px;
     height: 500px;
-    margin-top: 50px;
+    margin-top: 150px;
     padding: 20px;
-    border: 1px solid red;
+    border: 2px solid;
+    border-radius: 4px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    background-color: #343a40;
 }
 
 .display {
-    border: 1px solid red;
+    border: 2px solid;
+    background-color: #adb5bd;
+}
+
+#display-text {
+    font-size: 50px;
+    text-align: right;
+    margin: 20px;
 }
 
 .buttons {
     flex-grow: 1;
     display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .buttons button {
     flex-grow: 1;
+    flex-basis: 60px;
+    height: 60px;
+    border: 2px solid;
+    border-radius: 4px;
+    background-color: #ced4da;
+}
+
+.buttons .all-clear {
+    flex-grow: 2;
+    flex-basis: 130px;
+}
+
+.buttons .equals {
+    flex-grow: 2;
+    flex-basis: 130px;
+}
+
+.buttons .all-clear, .buttons .clear {
+    background-color: #ff5e5b;
+}
+
+.buttons .operator,  .buttons .equals {
+    background-color: #fec89a;
 }
