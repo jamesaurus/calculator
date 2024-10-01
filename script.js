@@ -35,12 +35,34 @@ function changeDisplay(value) {
     display.innerHTML = value;
 }
 
-function clear() {
+function allClear() {
     num1 = "";
     num2 = "";
     operator = "";
     displayValue = "0";
     changeDisplay(displayValue);
+}
+
+function clear() {
+    if (operator === "") { // First number
+        if (num1.length >= 2) {
+            num1 = num1.slice(0, num1.length-1);
+            displayValue = num1;
+        }
+        else {
+            num1 = num1.slice(0, num1.length-1);
+            displayValue = "0";
+        }
+    } else { // Second number
+        if (num2.length >= 2) {
+            num2 = num2.slice(0, num2.length-1);
+            displayValue = num2;
+        }
+        else {
+            num2 = num2.slice(0, num2.length-1);
+            displayValue = "0";
+        }
+    }
 }
 
 let operator = "";
@@ -69,7 +91,9 @@ buttons.forEach((button) => {
             num1 = displayValue;
             num2 = "";
             operator = "";
-        } else { 
+        } else if (button.className === "all-clear") { 
+            allClear();
+        } else {
             clear();
         }
 
