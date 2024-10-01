@@ -58,6 +58,9 @@ buttons.forEach((button) => {
             }
         } else if (button.className === "equals") {
             displayValue = operate(operator, num1, num2); // if num1 = "" it is coerced into 0
+            num1 = displayValue;
+            num2 = "";
+            operator = "";
         }
 
         // Update display
