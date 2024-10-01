@@ -35,6 +35,14 @@ function changeDisplay(value) {
     display.innerHTML = value;
 }
 
+function clear() {
+    num1 = "";
+    num2 = "";
+    operator = "";
+    displayValue = "0";
+    changeDisplay(displayValue);
+}
+
 let operator = "";
 let num1 = "";
 let num2 = "";
@@ -61,6 +69,8 @@ buttons.forEach((button) => {
             num1 = displayValue;
             num2 = "";
             operator = "";
+        } else { 
+            clear();
         }
 
         // Update display
