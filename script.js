@@ -36,39 +36,46 @@ function changeDisplay(value) {
 }
 
 function allClear() {
-    num1 = "";
-    num2 = "";
-    operator = "";
+    operator = [];
+    num1 = [];
+    num2 = [];
     displayValue = "0";
     changeDisplay(displayValue);
 }
 
 function clear() {
-    if (operator === "") { // First number
+    // Check if user is inputting first or second value
+    if (operator.length === 0) {
         if (num1.length >= 2) {
-            num1 = num1.slice(0, num1.length-1);
-            displayValue = num1;
-        }
-        else {
-            num1 = num1.slice(0, num1.length-1);
+            num1.pop();
+            displayValue = num1.join("");
+        } else {
+            num1.pop();
             displayValue = "0";
         }
-    } else { // Second number
+        console.log(num1);
+    } else {
         if (num2.length >= 2) {
-            num2 = num2.slice(0, num2.length-1);
-            displayValue = num2;
-        }
-        else {
-            num2 = num2.slice(0, num2.length-1);
+            num2.pop();
+            displayValue = num2.join("");
+        } else {
+            num2.pop();
             displayValue = "0";
         }
     }
 }
 
-let operator = "";
-let num1 = "";
-let num2 = "";
-let displayValue = "0";
+function equals() {
+    displayValue = operate(operator[0], num1.join(""), num2.join(""));
+    num1 = displayValue.toString().split("");
+    num2 = [];
+    operator.pop();
+}
+
+let operator = [];
+let num1 = [];
+let num2 = [];
+let displayValue = "";
 
 // Add listeners to buttons
 const buttons = document.querySelectorAll("button");
@@ -76,44 +83,45 @@ buttons.forEach((button) => {
     button.addEventListener("click", () => {
 
         // Check which button is pressed
-        if (button.className === "operator") {
-            operator = button.textContent;
-        } else if (button.className === "number") { 
-            if (operator === "") { // First number
-                num1 += button.textContent;
-                displayValue = num1;
-            } else { // Second number
-                num2 += button.textContent;
-                displayValue = num2;
-            }
-        } else if (button.className === "equals") {
-            displayValue = operate(operator, num1, num2); // if num1 = "" it is coerced into 0
-            num1 = displayValue;
-            num2 = "";
-            operator = "";
-        } else if (button.className === "decimal") {
-            if (operator === "") { // First number
-                num1 += button.textContent;
-                displayValue = num1;
-            } else { // Second number
-                num2 += button.textContent;
-                displayValue = num2;
-            }
-        } else if (button.className === "all-clear") { 
-            allClear();
-        } else {
-            clear();
-        }
+        switch(button.className) {
+            case "decimal":
+            case "number":
+                // Check if user is inputting first or second value
+                if (operator.length === 0) {
+                    num1.push(button.textContent);
+                    displayValue = num1.join("");
+                } else {
+                    num2.push(button.textContent);
+                    displayValue = num2.join("");
+                }
+                console.log(num1);
+                console.log(num2);
+                break;
+            case "operator":
+                if (operator.length === 0) {
+                    operator.push(button.textContent);
+                }
 
-        // Update display
+                // Evaluate the expression if both values and operator are given
+                // and another operator is given without pressing equals
+                if (operator.length === 1 && num2.length > 0) {
+                    equals();
+                    operator.push(button.textContent);
+                }
+
+                console.log(operator);
+                break;
+            case "equals":
+                equals();
+                console.log(num1, num2);
+                break;
+            case "clear":
+                clear();
+                break;
+            case "all-clear":
+                allClear();
+                break;
+        }
         changeDisplay(displayValue);
     })
 })
-
-/*
-console.log(operate("add", 1, 2));
-console.log(operate("subtract", 2, 1));
-console.log(operate("multiply", 3, 5));
-console.log(operate("divide", 10, 2));
-*/
-
