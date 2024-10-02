@@ -1,6 +1,4 @@
 function add(num1, num2) {
-    console.log(num1);
-    console.log(num2);
     return Number(num1) + Number(num2);
 }
 
@@ -53,7 +51,7 @@ function clear() {
             num1.pop();
             displayValue = "0";
         }
-        console.log(num1);
+
     } else {
         if (num2.length >= 2) {
             num2.pop();
@@ -94,8 +92,6 @@ buttons.forEach((button) => {
                     num2.push(button.textContent);
                     displayValue = num2.join("");
                 }
-                console.log(num1);
-                console.log(num2);
                 break;
             case "operator":
                 if (operator.length === 0) {
@@ -109,11 +105,9 @@ buttons.forEach((button) => {
                     operator.push(button.textContent);
                 }
 
-                console.log(operator);
                 break;
             case "equals":
                 equals();
-                console.log(num1, num2);
                 break;
             case "clear":
                 clear();
@@ -122,6 +116,13 @@ buttons.forEach((button) => {
                 allClear();
                 break;
         }
+
+
+        // Round display value
+        if (displayValue.length > 7) {
+            displayValue = Number(displayValue).toExponential(2);
+        }
+
         changeDisplay(displayValue);
     })
 })
