@@ -21,6 +21,7 @@ body {
 }
 
 .display {
+    overflow: hidden;
     border: 2px solid;
     border-radius: 4px;
     background-color: #adb5bd;
